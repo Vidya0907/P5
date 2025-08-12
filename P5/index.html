@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Sales Data Analysis Dashboard</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: auto;">
+
+    <hr/>
+    <h1>📱 Mobile Sales Data Analysis Dashboard</h1>
+    <p>
+        This interactive <b>Power BI dashboard</b> provides an in-depth analysis of mobile phone sales across 
+        cities, models, payment methods, time periods, and brands. It offers both current performance insights and 
+        <b>year-on-year comparisons</b> to support strategic decision-making.
+    </p>
+    <hr/>
+
+    <!-- Dashboard Images -->
+    <div align="center">
+        <img width="906" height="508" alt="Overall Sales Analysis Dashboard" 
+             src="assets/p1.png" />
+    </div>
+
+    <div align="center">
+        <img width="906" height="500" alt="MTD and YoY Comparison Dashboard" 
+             src="assets/p2.png" />
+    </div>
+    <hr/>
+
+    <h2>📊 Dashboard Overview</h2>
+    <p>The dashboard is divided into <b>two main sections</b> for comprehensive analysis:</p>
+
+    <h3>1. <b>Overall Sales Analysis (Current Year)</b></h3>
+    <ul>
+        <li><b>KPIs:</b> Total Sales: ₹769M | Quantity Sold: 19K | Transactions: 3,835 | Average Price: ₹40.11K</li>
+        <li>Total Sales by City – Interactive map for regional performance</li>
+        <li>Total Quantity by Month – Monthly sales trends</li>
+        <li>Transactions by Payment Method – UPI, Debit Card, Credit Card, Cash</li>
+        <li>Ratings by Status – Good, Average, Poor</li>
+        <li>Total Sales by Mobile Model – iPhone SE, Galaxy Note 20, etc.</li>
+        <li>Total Sales by Day Name – Weekday vs. weekend patterns</li>
+        <li>Brand-Wise Summary – Apple, OnePlus, Vivo, etc.</li>
+    </ul>
+    <p><b>📖 Storyline:</b><br>
+        This view highlights <b>current year performance</b> by brand, payment preferences, and regional reach. 
+        It reveals peak buying periods, preferred purchasing days, and guides stocking, pricing, and marketing strategies.
+    </p>
+
+    <h3>2. <b>MTD & Year-on-Year Comparison</b></h3>
+    <ul>
+        <li><b>KPIs:</b> MTD Sales: ₹253M | Quantity Sold: 6,364 | Transactions: 1,285 | Avg Price: ₹39.73K</li>
+        <li>Quarterly Sales vs. Same Period Last Year</li>
+        <li>Total Sales by Year – Annual comparison</li>
+        <li>Month-Wise YoY Comparison – Monthly performance trends</li>
+        <li>MTD by Year, Quarter, Month, and Day</li>
+    </ul>
+    <p><b>📖 Storyline:</b><br>
+        This view supports <b>period-over-period analysis</b> to evaluate growth or decline. 
+        It helps in setting benchmarks, identifying seasonal effects, and aligning sales strategies for future performance.
+    </p>
+    <hr/>
+
+    <h2>📌 Key Insights</h2>
+    <ul>
+        <li>Apple leads in both total sales and number of transactions</li>
+        <li>iPhone SE is the top-selling model, followed by Galaxy Note 20</li>
+        <li>Sales quantities peak in March and July</li>
+        <li>Ratings are predominantly "Good", reflecting strong customer satisfaction</li>
+        <li>Sales are nearly evenly distributed across payment methods</li>
+        <li>Average price remains consistent, indicating stable pricing strategy</li>
+    </ul>
+    <hr/>
+
+    <h2>📈 DAX Measures Used</h2>
+    <pre>
+1. Average_Price = AVERAGE(Sales_Data[Price Per Unit])
+
+2. MTD = TOTALMTD([Total_Sales], Custom_Calendar[Date].[Date])
+
+3. Same Period Last Year = 
+   CALCULATE([Total_Sales],
+             SAMEPERIODLASTYEAR(Custom_Calendar[Date].[Date]))
+
+4. Total_Quantity = SUM(Sales_Data[Units Sold])
+
+5. Total_Sales = SUMX(Sales_Data, 
+                      Sales_Data[Units Sold] * Sales_Data[Price Per Unit])
+
+6. Transactions = COUNTROWS(Sales_Data)
+    </pre>
+    <hr/>
+
+</body>
+</html>
